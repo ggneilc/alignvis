@@ -28,44 +28,42 @@ with open(args.f, 'r') as file:
     start_line_time = time.time()
 
     lines_cleaned = [x for x in lines if not re.search(line_check, x)]
-    print(lines_cleaned)
-    time.sleep(100)
     for line in lines_cleaned:
         count_line += 1
         print(count_line)
         # how many characters we should read
-        if line[0] == '@':
-            match = re.search(pattern,line)
-            if match:
-                x = int(match.group(1))
-                y = int(match.group(2))
-                length = y-x + 100
+#        if line[0] == '@':
+#            match = re.search(pattern,line)
+#            if match:
+#                x = int(match.group(1))
+#                y = int(match.group(2))
+#                length = y-x + 100
                 
-        if line[0] != '-': # skip '+'
-            continue
+#        if line[0] != '-': # skip '+'
+#            continue
 
-        charfound = False
-        count = 0
+#        charfound = False
+#        count = 0
         for i in range(len(line)):
-            if line[i] == '-' and not charfound:  # not in check = - 
-                continue
-            if count > length:
-                break
-            count += 1
+#            if line[i] == '-' and not charfound:  # not in check = - 
+#                continue
+#            if count > length:
+#                break
+#            count += 1
             observation = {'A': 0, 'T': 0, 'C': 0, 'G': 0}
 
             if line[i] == 'A':
                 observation['A'] = 1
-                charfound = True
+#                charfound = True
             elif line[i] == 'T':
                 observation['T'] = 1
-                charfound = True
+#                charfound = True
             elif line[i] == 'C':
                 observation['C'] = 1
-                charfound = True
+#                charfound = True
             elif line[i] == 'G':
                 observation['G'] = 1
-                charfound = True
+#                charfound = True
 
             rows.append(observation)
 
