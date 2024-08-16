@@ -33,7 +33,11 @@ seq_1_data <- data[SEQ_ID == "SEQ_1"]
 
 # Remove the SEQ_ID column 
 seq_1_data <- seq_1_data[, -1, with = FALSE]
+seq_1_data <- as.matrix(seq_1_data)
+print(seq_1_data)
 
-result <- ppca(as.matrix(seq_1_data), nPcs=2)
-result
-print(completeObs(result))
+# Perform PPCA
+result <- ppca(seq_1_data, nPcs=2)
+
+# Attempt to retrieve the completed data
+print(scores(result))
