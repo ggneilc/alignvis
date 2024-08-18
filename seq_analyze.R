@@ -27,17 +27,30 @@ get_all_sequences <- function() {
 # main
 filepath <- "sequence_data.csv"
 data <- fread(filepath)
+gc()
 
 # Subset the data by sequence
-seq_1_data <- data[SEQ_ID == "SEQ_1"]
+#seq_12_data <- data[SEQ_ID == "SEQ_1" | SEQ_ID == "SEQ_2"]
 
 # Remove the SEQ_ID column 
-seq_1_data <- seq_1_data[, -1, with = FALSE]
-seq_1_data <- as.matrix(seq_1_data)
-print(seq_1_data)
+#seq_12_data <- seq_12_data[, -1, with = FALSE]
+#seq_12_data <- as.matrix(seq_12_data)
+ids <- data$SEQ_ID  # Extract the SEQ_ID column
+nids <- length(unique(ids))  # Count the number of unique IDs
+print(nids)  # Print the result
+
+
+tmp <- data[, -1, with = FALSE]
+mdata <- as.matrix(tmp)
+
+mdata <- matrix(t(mdata), nrow=nids, byrow=T)
+gc()
 
 # Perform PPCA
-result <- ppca(seq_1_data, nPcs=2)
+result <- ppca(mdata, nPcs=2)
 
+print(result@scores)
 # Attempt to retrieve the completed data
-print(scores(result))
+#pdf("Rplots.pdf")
+#plotPcs(result, type="scores")
+#dev.off()

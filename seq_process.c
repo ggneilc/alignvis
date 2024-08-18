@@ -4,10 +4,8 @@
 
 /*
  * Process FASTA file by encoding sequences to csv
- *
- * fgets(out, length, file) reads up to length and stores in out from file
  * string.h contains strpbrk(string, pattern) -> find pattern in string
- *
+ * fprintf(output, "%", val) -> formatted output to file
  */
 
 FILE *input_file;
@@ -85,11 +83,14 @@ void encode_sequence(char *sequence){
   free(pos);
 }
 
+/**
+ * scan_sequence() -> finds starting and ending position of basecalls
+ */
 int* scan_sequence(char *sequence){
-  int* positions = (int*)malloc(2 * sizeof(int));  // Allocate memory for the 2-tuple
+  int* positions = (int*)malloc(2 * sizeof(int));  
   if (positions == NULL) { 
     printf("Memory allocation failed!\n");
-    exit(1);  // Handle memory allocation failure
+    exit(1);  
   }
   int firstpos = -1; int lastpos = -1;
 
