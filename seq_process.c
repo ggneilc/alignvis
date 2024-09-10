@@ -65,7 +65,7 @@ void encode_sequence(char *sequence){
     fprintf(output_file, "SEQ_%d,,,,\n", sequence_count);
 
   // basecalls 
-  for (int i = pos[0]; i < pos[1]; i++) {
+  for (int i = pos[0]; i <= pos[1]; i++) {
     switch (sequence[i]) {
       case '-': fprintf(output_file, "SEQ_%d,0,0,0,0\n", sequence_count); break;
       case 'A': fprintf(output_file, "SEQ_%d,1,0,0,0\n", sequence_count); break;
